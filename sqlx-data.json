@@ -1,0 +1,134 @@
+{
+  "db": "PostgreSQL",
+  "3711fb65b6931a2d29cb06ecdf76f4206e74f595f668df4d2315f2522e700948": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Int4",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO systems(system_id, capacity, capabilities) VALUES ($1, $2, $3)\n            "
+  },
+  "3bbdf530b58d567896fd00e6991c4758db1090133c2942005d3a5fb3014361c6": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid",
+          "Timestamptz",
+          "Interval",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO unplanned (allocation_id, system_id, start_time, sliding_window, capabilities)\n        VALUES ($1, $2, $3, $4, $5)\n            "
+  },
+  "3c066ec536c49e86ffabb5df3dd3c5df7d8b992856eecb2e49ef0b728df496bc": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid",
+          {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "entry",
+                  "full",
+                  "capability"
+                ]
+              },
+              "name": "allocation_kind"
+            }
+          },
+          "Timestamptz",
+          "Timestamptz",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO allocations(system_id, allocation_id, kind, planned, start_time, end_time, capabilities)\n        VALUES ($1, $2, $3, true, $4, $5, $6)\n            "
+  },
+  "3d6625c1a29d5d37376029c84c4ec256c9bac9c56aa937a33a185ba794967c3d": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Timestamptz",
+          "Timestamptz"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO entries(allocation_id, start_time, end_time)\n        VALUES ($1, $2, $3)\n            "
+  },
+  "70f7e12105a36173110f34c6aaf70787bf6318e5d5a5ea18330988fbab9837bb": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid",
+          "Timestamptz",
+          "Timestamptz",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO planned(allocation_id, system_id, start_time, end_time, capabilities)\n        VALUES ($1, $2, $3, $4, $5)\n            "
+  },
+  "719a3727b6f75973540d6da159f84b601e498a6cc956d09c8a33f2cef5ab4d7c": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid",
+          "Timestamptz",
+          "Timestamptz",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO planned (allocation_id, system_id, start_time, end_time, capabilities)\n        VALUES ($1, $2, $3, $4, $5)\n            "
+  },
+  "cf29e801cd5a648104bc88ecd9c726cff5b2c2ab97ca547d663bbe81b594eeca": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid",
+          {
+            "Custom": {
+              "kind": {
+                "Enum": [
+                  "entry",
+                  "full",
+                  "capability"
+                ]
+              },
+              "name": "allocation_kind"
+            }
+          },
+          "Timestamptz",
+          "Int4"
+        ]
+      }
+    },
+    "query": "\n        INSERT INTO allocations(system_id, allocation_id, kind, planned, start_time, end_time, capabilities)\n        VALUES ($1, $2, $3, false, $4, 'infinity', $5)\n            "
+  }
+}
